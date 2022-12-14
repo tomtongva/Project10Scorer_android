@@ -321,7 +321,7 @@ public class LoginFragment extends Fragment {
                     resultTv.setText("TYPE: TYPE_EMAIL \naddress: " + email + "\nbody: " + body + "\nsubject: " + subject + "\nraw value: " + rawValue);
 
 
-                    login(email, data[0], "", "", "");
+                    login(email, data[0].split("=")[1].replaceAll(" ", ""), "", "", "");
                 }
                 break;
                 case Barcode.TYPE_CONTACT_INFO: {
@@ -368,7 +368,9 @@ public class LoginFragment extends Fragment {
                         Log.d(TAG, "onActivityResult: imageUri: " + imageUri);
 
                         imageIv.setImageURI(imageUri);
-                        mListener.gotoGroupFragment("", "", "");
+
+                        detectResultFromImage();
+                        //mListener.gotoGroupFragment("", "", "");
                     } else {
                         Toast.makeText(getActivity(), "Cancelle", Toast.LENGTH_SHORT).show();
                     }
