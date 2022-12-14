@@ -495,6 +495,7 @@ public class LoginFragment extends Fragment {
         call.enqueue(new retrofit2.Callback<LoginResult>() {
             @Override
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
+
                 if (response.code() == 200) {
                     LoginResult result = response.body();
                     Toast.makeText(getActivity(), "Welcome", Toast.LENGTH_LONG).show();

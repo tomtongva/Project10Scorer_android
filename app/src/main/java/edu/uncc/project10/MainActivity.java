@@ -189,6 +189,14 @@ public class MainActivity extends AppCompatActivity implements IFragmentListener
                 .commit();
     }
 
+    @Override
+    public void gotoLoginFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.containerview, new LoginFragment(), "LoginFragment")
+                .addToBackStack(null)
+                .commit();
+    }
+
     /*private void detectResultFromImage() {
         try {
             InputImage inputImage = InputImage.fromFilePath(this, imageUri);

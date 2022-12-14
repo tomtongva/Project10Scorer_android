@@ -46,8 +46,12 @@ import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.common.InputImage;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -153,6 +157,34 @@ public class GroupFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_group, container, false);
         TextView txtViewWelcome = view.findViewById(R.id.textViewWelcome);
         txtViewWelcome.setText("Welcome " + fName);
+
+        TextView textViewLogout = view.findViewById(R.id.textViewLogout);
+        textViewLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HashMap<String, String> data = new HashMap<>();
+                data.put("email", email);
+                Call<LogoutResult> call = retrofitInterface.logout(data);
+                call.enqueue(new Callback<LogoutResult>() {
+                    @Override
+                    public void onResponse(Call<LogoutResult> call, Response<LogoutResult> response) {
+                        if (response.code() == 200) {
+                            Object result = response.body();
+                            Toast.makeText(getActivity(), "You're logged out", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(getActivity(), response.code() + " Something went wrong ", Toast.LENGTH_LONG).show();
+                        }
+
+                        mListener.gotoLoginFragment();
+                    }
+
+                    @Override
+                    public void onFailure(Call<LogoutResult> call, Throwable t) {
+                        Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
 
         cameraBtn = view.findViewById(R.id.groupCameraBtn);
         galleryBtn = view.findViewById(R.id.groupGalleryBtn);
