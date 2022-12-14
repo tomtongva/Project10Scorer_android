@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Scorer</string>
+
+    <string name="com_auth0_client_id">bSPhMzpoeHixOqvV0nwZ5BCs36nqKGdk</string>
+    <string name="com_auth0_domain">dev-264uwjwu6c8xz02x.us.auth0.com</string>
+    <string name="login">Log in</string>
+    <string name="logout">Log out</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
