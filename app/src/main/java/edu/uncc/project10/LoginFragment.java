@@ -1,4 +1,54 @@
+/** The majority of the QR scanning code was learned from a Youtube tutorial, https://www.youtube.com/watch?v=jngzWPWWiKE&t=639s, by Atif Pervaiz. **/
 package edu.uncc.project10;
+
+import android.Manifest;
+import android.app.Activity;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
+import com.google.mlkit.vision.barcode.BarcodeScanner;
+import com.google.mlkit.vision.barcode.BarcodeScannerOptions;
+import com.google.mlkit.vision.barcode.BarcodeScanning;
+import com.google.mlkit.vision.barcode.common.Barcode;
+import com.google.mlkit.vision.common.InputImage;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+
+import edu.uncc.project10.Globals;
+import edu.uncc.project10.IFragmentListener;
+import edu.uncc.project10.LoginResult;
+import edu.uncc.project10.RetrofitInterface;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 
 import android.Manifest;
 import android.app.Activity;
